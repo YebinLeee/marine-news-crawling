@@ -6,6 +6,8 @@ import json
 import mysql.connector
 import schedule
 import openai 
+import os 
+from decouple import config
 
 app = FastAPI()
 
@@ -55,7 +57,7 @@ def crawl_news():
 def save_summary(summary):
     # Establish a connection to the MySQL database
     connection = mysql.connector.connect(
-        host="delimo-server.cfggn7y2q2g3.ap-northeast-2.rds.amazonaws.com",
+        host= config('db-host'),
         user="admin",
         password="admin1234",
         database="smart"
@@ -76,7 +78,7 @@ def save_summary(summary):
 
 
 def generate_summary(content):
-    openai.api_key = "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"
+    openai.api_key = config('key')
     
     task = "다음 해운 관련 기사를 세 문장으로 요약해주세요: "
 
