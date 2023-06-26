@@ -6,7 +6,6 @@ import json
 import mysql.connector
 import schedule
 import openai 
-import os 
 from decouple import config
 
 app = FastAPI()
